@@ -9,7 +9,7 @@
             "outputFormat": "esmodule",
             "includeNodeModules": true,
             "optimize": true,
-            "sourceMap": true
+            "sourceMap": false
         }
     },
     "staticFiles": {

@@ -19,7 +19,6 @@ USER REMAIN RESPONSIBLE FOR WRONG USAGE OF THIS SOFTWARE.
 * 
 */
 
-
 // import Clean.js
 import {LE_InitWebApp, cle} from 'cle.js/lib'
 import {InitRouter, Router, RedirectTo} from "cle.js/routing/lite_routing"
@@ -28,9 +27,6 @@ import "./utils/csz.js"
 
 import "./app/global-di-components/**/*.js"
 
-import "./style.css"
-
-// import { Homepage } from './app/pages/home.page.deps'
 import { Testpage } from './app/pages/test.page.js'
 
 
