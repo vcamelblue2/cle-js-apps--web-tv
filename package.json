@@ -18,7 +18,9 @@
     "scripts": {
         "start": "parcel serve src/index.html -p 4200",
         "build": "parcel build",
-        "test-build": "npx http-server ./dist/browser -p 4200 -c-1"
+        "test-build": "npx http-server ./dist/browser -p 4200 -c-1",
+        "predeploy": "rm -rf ./dist/browser && parcel build --public-url https://vcamelblue2.github.io/cle-js-apps--web-tv/",
+        "deploy": "gh-pages -d ./dist/browser"
     },
     "dependencies": {
         "cle.js": "~0.14.6",
@@ -29,7 +31,8 @@
         "@parcel/transformer-inline-string": "^2.9.3",
         "parcel": "~2.9.3",
         "parcel-reporter-static-files-copy": "^1.5.0",
-        "process": "^0.11.10"
+        "process": "^0.11.10",
+        "gh-pages": "^5.0.0"
     },
     "browserslist": [
         ">0.2%",
