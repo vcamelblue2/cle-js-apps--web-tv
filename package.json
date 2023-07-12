@@ -1,6 +1,6 @@
 {
-    "name": "new-cle-app",
-    "version": "0.14.5",
+    "name": "web-tv",
+    "version": "1.0.0",
     "outputFormat": "esmodule",
     "targets": {
         "browser": {
