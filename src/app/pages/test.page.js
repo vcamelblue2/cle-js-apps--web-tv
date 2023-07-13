@@ -7,16 +7,25 @@ export const Testpage = async (state, params)=>{
   return cle.div({ style: "min-height: 100vh"}, 
 
     { 'component-SettingsModel': { id: "settings" }},
+    { 'component-ScreenService': { id: "screen" }},
     { 'component-LocalDbService': { id: "localdb" }},
     { 'component-ExtPlayerService': { id: "extplayer" }},
     { 'component-ChannelSearchService': { id: "chsearch" }},
     
-    cle.use_navbar({ style: "background: #f4f5f6; border-bottom: 0.1rem solid #d1d1d1; padding: 5px 10px; position: sticky;" }, 
-      cle.span({style: "margin: 0px; display: flex; justify-content: space-between; align-items: center;"}, 
-        
-        cle.h2({style: "margin: 0px"}, "Web Tv "),
 
-        cle.span({ style: "display: flex; justify-content: space-between; align-items: flex-end; gap: 25px"},
+    cle.use_navbar({ class: css("background: #f4f5f6; border-bottom: 0.1rem solid #d1d1d1; padding: 5px 10px; position: sticky; top: 0px; z-index: 1;") }, 
+      
+      cle.span({ class: $ => [
+        css("margin: 0px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;"), 
+        $.le.screen.isMobile_M ? css('flex-wrap: nowrap; flex-direction: column; align-items: center; gap: 15px') : '' 
+      ]}, 
+        
+        cle.h2({ class: css("margin: 0px")}, "Web Tv "),
+
+        cle.span({ class: $ => [
+          css("display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 25px"), 
+          $.le.screen.isMobile_M ? css('flex-wrap: nowrap; flex-direction: column; align-items: center; gap: 15px;') : ''
+        ]},
             
           { 'use-ChannelSearchInput': {} },
           
