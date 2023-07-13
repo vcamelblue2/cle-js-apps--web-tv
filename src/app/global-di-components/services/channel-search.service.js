@@ -23,7 +23,9 @@ ComponentsRegistry.define({ ChannelSearchService: {
         return true
       }
 
-      return group.channels.find(c=>c.num.toString().startsWith($.filter) || c.label.toLowerCase().startsWith($.filter))
+      let filter = $.filter.toLowerCase()
+
+      return group.channels.find(c=>c.num.toString().startsWith(filter) || c.label.toLowerCase().startsWith(filter))
     },
 
     channelMatchSearch($, channel){
@@ -31,7 +33,9 @@ ComponentsRegistry.define({ ChannelSearchService: {
         return true
       }
 
-      return channel.num.toString().startsWith($.filter) || channel.label.toLowerCase().startsWith($.filter)
+      let filter = $.filter.toLowerCase()
+
+      return channel.num.toString().startsWith(filter) || channel.label.toLowerCase().startsWith(filter)
     }
   }
 
