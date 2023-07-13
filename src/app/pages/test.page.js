@@ -23,7 +23,7 @@ export const Testpage = async (state, params)=>{
           { 'use-Toggle': {
             let: {
               status: SmartAlias("$.le.settings.useIframes"),
-              customStatus: { "true": "In App Preview: ON", "false": "In App Preview: OFF" },
+              customStatus: { "true": "Preview: ON", "false": "Preview: OFF" },
             }
           }}
         )
@@ -52,14 +52,14 @@ export const Testpage = async (state, params)=>{
     }),
 
     cle.use_contents({
-      style: "padding: 25px",
+      style: "padding: 25px; padding-top: 10px;",
       open_group: undefined, // utils for autoclose open group if max 1 group enabled
     },
 
       cle.use_content({ meta: { forEach: "group", of: $ => $.le.chsearch.filtering ? $.le.chsearch.getFilteredChannels($.le.localdb.channels) : $.le.localdb.channels, full_optimized: true },
         open: false,
         forcedOpen: $ => $.open || $.le.chsearch.filtering,
-        style: "margin: 25px",
+        style: "padding: 20px; margin: 10px; border-radius: 5px; background: whitesmoke;",
         
         "ha_style.display": $ => $.le.chsearch.filtering && !$.le.chsearch.groupMatchSearch($.group) ? 'none' : null,
         "a_open": $ => $.le.chsearch.filtering || $.open ? '' : null,
@@ -76,7 +76,7 @@ export const Testpage = async (state, params)=>{
 
         cle.use_channel_group({ style: {
             display: 'flex',
-            overflow: 'scroll',
+            overflow: 'auto',
             justifyContent: 'flex-start',
             gap: '10%',
             marginTop: '25px'
@@ -86,7 +86,7 @@ export const Testpage = async (state, params)=>{
         }, 
 
           cle.use_channel({ meta: { forEach: "channel", of: $ => $.group.channels },
-            style: "display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 15px",
+            style: "display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 15px; min-width: 200px",
             "ha_style.width": $ => $.channel.oversize ? '100%' : '33%'
           }, 
 
@@ -128,7 +128,7 @@ export const Testpage = async (state, params)=>{
 
       cle.div({ style: "display: flex; justify-content: space-between; align-items: center;"}, 
 
-        { h2: {
+        { h3: {
           style: "margin: 0",
           text: $ => "Now Playng: " + $.le.extplayer.playngChannel?.num + " - " + $.le.extplayer.playngChannel?.label
         }},
