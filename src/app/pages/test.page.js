@@ -32,6 +32,10 @@ export const Testpage = async (state, params)=>{
 
     cle.use_RemoteController({
 
+      let: {
+        getChannelByNum: $ => $.le.localdb.getChannelByNum
+      },
+
       on_changeChannelRequest: ($, num) => {
 
         let channel = $.le.localdb.getChannelByNum(num)
