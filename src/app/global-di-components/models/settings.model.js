@@ -8,7 +8,7 @@ ComponentsRegistry.define({ SettingsModel: {
 
     theme: "light",
     maxOneGroupOpen: true,
-    useIframes: true,
+    useIframes: false,
 
     localSyncronized: ['useIframes'],
     localSyncronized$: $=>[$.useIframes]
