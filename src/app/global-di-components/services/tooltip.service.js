@@ -136,7 +136,7 @@ ComponentsRegistry.define({ TooltipService: {
 
               style: $ => ({
                 maxWidth: options.maxWidth+"px",
-                top: (options.position === 'bottom' ? bounds.bottom+5 : bounds.top+5)+"px",
+                top: ((options.position === 'bottom' ? bounds.bottom+5 : bounds.top+5))+"px",
                 left: (bounds.left+(bounds.width/2)-($.computedWidth/2))+"px"
               }),
 

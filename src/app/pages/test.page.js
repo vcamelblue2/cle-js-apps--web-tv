@@ -116,14 +116,14 @@ export const Testpage = async (state, params)=>{
               cle.span({style: "background: #ccc; padding: 0px 10px; border-radius: 100px; margin-right: 7px;"}, $ => $.channel.num), $ => $.channel.label
             ),
 
-            { 'use-EmbeddedPlayer': { meta: { if: $ => $.forcedOpen && $.le.settings.useIframes },
+            { 'use-EmbeddedPlayer': { meta: { if: $ => $.forcedOpen && $.le.settings.useIframes && $.channel.preview },
               let: {
                 url: $ => $.channel.url,
                 width: $ => $.channel.oversize ? "80%" : 700,
               }
             }},
 
-            { div: { meta: { if: $ => !$.le.settings.useIframes },
+            { div: { meta: { if: $ => !$.le.settings.useIframes || !$.channel.preview},
               style: { width: "200px", height: "200px", background: "gray", borderRadius: "25px", display: "flex", justifyContent: "center", alignItems: "center", textAlign: "center", color: "white", fontSize: "12rem", fontWeight: "800", cursor: "pointer" },
               class: css(`&:hover{transform: scale(1.05)} transition: 0.2s ease-out;`),
               text: $ => $.channel.num,
