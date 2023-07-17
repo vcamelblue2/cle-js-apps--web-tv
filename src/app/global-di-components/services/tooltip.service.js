@@ -1,4 +1,4 @@
-import { ComponentsRegistry, RenderApp } from "cle.js/lib";
+import { ComponentsRegistry } from "cle.js/lib";
 
 export const hasTooltip = (txt, {position="bottom", delay=300, maxWidth=200}={})=>{
   return {
@@ -105,7 +105,7 @@ ComponentsRegistry.define({ TooltipService: {
           // console.log("BOUNDS", bounds)
 
           $.oos.running_tooltips.set( ev.target, 
-            RenderApp(document.body, { div: {
+            $.u.newConnectedSubRenderer(document.body, { div: {
               
               let: {
                 computedWidth: 0,
