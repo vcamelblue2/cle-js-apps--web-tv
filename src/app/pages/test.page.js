@@ -31,12 +31,11 @@ export const Testpage = async (state, params)=>{
         ]},
             
           { 'use-ChannelSearchInput': {
-            ...hasTooltip($=>$.iptFocused ? '' : "Filter Channels by name or number", {position: "bottom", delay: 500}), 
+            ...hasTooltip($=>$.iptFocused ? '' : "Filter Channels by name or number", {position: "bottom", delay: 300}), 
           } },
           
           { 'use-Toggle': {
-            
-            ...hasTooltip("Enable or disable In App Preview", {position: "bottom", delay: 500}), 
+            ...hasTooltip("Enable or disable In App Preview (Experimental, work only for some channels)", {position: "bottom", delay: 200}), 
 
             let: {
               status: SmartAlias("$.le.settings.useIframes"),
@@ -49,7 +48,7 @@ export const Testpage = async (state, params)=>{
 
     cle.use_RemoteController({
 
-      ...hasTooltip($=>$.btnVisible || $.ipt ? '' : "Play channel by number. \n Insert and press 'Enter' or 'Open' button to open. \n You can also open Number Dialer with the icon on the right", {position: "bottom", delay: 500, maxWidth: 300}), 
+      ...hasTooltip($=>$.btnVisible || $.ipt || $.focused ? '' : "Play channel by number. \n Insert and press 'Enter' or 'Open' button to open. \n You can also open Number Dialer with the icon on the right", {position: "bottom", delay: 300, maxWidth: 300}), 
 
       let: {
         getChannelByNum: $ => $.le.localdb.getChannelByNum

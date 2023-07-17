@@ -4,10 +4,15 @@ ComponentsRegistry.define({ RemoteController: {
 
   id: "remote",
 
+  childsRef: {
+    "input": "single"
+  },
+
   let: {
     ipt: "",
     getChannelByNum: $ => { return (num)=>'' }, 
     btnVisible: false,
+    focused: Bind("$.ref.input.iptFocused")
   },
 
   signals: {
@@ -20,6 +25,8 @@ ComponentsRegistry.define({ RemoteController: {
     }, 
 
       { 'use-InputWithIcons': {
+
+        name: "input",
 
         let: {
           value: Bind(`@ipt`),
