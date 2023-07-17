@@ -1,4 +1,6 @@
 import {SmartAlias, cle} from 'cle.js/lib'
+import { hasTooltip } from '../global-di-components/directives/tooltip.directives'
+
 
 export const Testpage = async (state, params)=>{
 
@@ -11,6 +13,7 @@ export const Testpage = async (state, params)=>{
     { 'component-LocalDbService': { id: "localdb" }},
     { 'component-ExtPlayerService': { id: "extplayer" }},
     { 'component-ChannelSearchService': { id: "chsearch" }},
+    { 'component-TooltipService': { id: "tooltipsvc" }},
     
 
     cle.use_navbar({ class: css("background: #f4f5f6; border-bottom: 0.1rem solid #d1d1d1; padding: 5px 10px; position: sticky; top: 0px; z-index: 1;") }, 
@@ -27,9 +30,14 @@ export const Testpage = async (state, params)=>{
           $.le.screen.isMobile_M ? css('flex-wrap: nowrap; flex-direction: column; align-items: center; gap: 15px;') : ''
         ]},
             
-          { 'use-ChannelSearchInput': {} },
+          { 'use-ChannelSearchInput': {
+            ...hasTooltip($=>$.iptFocused ? '' : "Filter Channels by name or number", {position: "bottom", delay: 500}), 
+          } },
           
           { 'use-Toggle': {
+            
+            ...hasTooltip("Enable or disable In App Preview", {position: "bottom", delay: 500}), 
+
             let: {
               status: SmartAlias("$.le.settings.useIframes"),
               customStatus: { "true": "Preview: ON", "false": "Preview: OFF" },
@@ -40,6 +48,8 @@ export const Testpage = async (state, params)=>{
     ),
 
     cle.use_RemoteController({
+
+      ...hasTooltip($=>$.btnVisible || $.ipt ? '' : "Play channel by number. \n Insert and press 'Enter' or 'Open' button to open. \n You can also open Number Dialer with the icon on the right", {position: "bottom", delay: 500, maxWidth: 300}), 
 
       let: {
         getChannelByNum: $ => $.le.localdb.getChannelByNum
