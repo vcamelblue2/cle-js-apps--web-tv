@@ -23,7 +23,7 @@ ComponentsRegistry.define({ InputWithIcons: {
     },
     
 
-    "private:let" :{
+    "private:def" :{
       input: undefined, // extra definition added to "input"
       leftIcon: undefined, // extra definition added to "leftIcon"
       rightIcon: undefined, // extra definition added to "leftIcon"
@@ -31,10 +31,10 @@ ComponentsRegistry.define({ InputWithIcons: {
 
     beforeInit(unifiedDef, unifiedDefChilds) {
       // console.log(unifiedDef, unifiedDefChilds)
-      if (unifiedDef._data?.input !== undefined){
+      if (unifiedDef._def?.input !== undefined){
         unifiedDefChilds[0].input = {
           ...unifiedDef.childs[0].input, 
-          ...unifiedDef._data?.input 
+          ...unifiedDef._def?.input 
         }
       }
       // console.log(unifiedDef)

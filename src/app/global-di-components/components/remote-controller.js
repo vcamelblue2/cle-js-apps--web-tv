@@ -34,7 +34,7 @@ ComponentsRegistry.define({ RemoteController: {
           inputStyle: " border-top: none; border-right: none",
         },
         
-        "private:def": { 
+        "private:def": { // override nested definition
           input: {
             handle: {
               onkeydown: ($, e) => {if (e.key === 'Enter'){ $.changeChannelRequest.emit(parseInt($.ipt)) }}
