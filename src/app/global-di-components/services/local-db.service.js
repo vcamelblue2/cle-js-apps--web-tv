@@ -9,7 +9,7 @@ ComponentsRegistry.define({ LocalDbService: {
     channels: [
 
       { group: "GUIDA TV", channels: [
-        { num: 0, label: "SuperGuida Tv", url: "https://www.superguidatv.it/ora-in-onda", oversize: true },
+        { preview: true, num: 0, label: "SuperGuida Tv", url: "https://www.superguidatv.it/ora-in-onda", oversize: true },
         // { num: -2, label: "TvTime", url: "https://www.tvtime.com/it" },
         // { num: -3, label: "JustWatch", url: "https://www.justwatch.com/it" },
       ]},
