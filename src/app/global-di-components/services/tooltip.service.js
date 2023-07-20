@@ -29,18 +29,18 @@ export const hasTooltip = (txt, {position="bottom", delay=300, maxWidth=200}={})
       if ($.__tooltip_active) {
         let currEv = $.__tooltip_target_evt
         $.__hide_tooltip(currEv)
-        $.__show_tooltip(currEv)
+        !$.__tooltip_condition && $.__show_tooltip(currEv)
       } 
     },
 
     def___show_tooltip($, e){
       // console.log("SHOW", e)
-      $.le.tooltipsvc.show(e, $.__tooltip_condition, {position, delay, maxWidth})
+      $.le.tooltipsvc.show(e, $.el, $.__tooltip_condition, {position, delay, maxWidth})
       $.__tooltip_active = true
       $.__tooltip_target_evt = e
     },
     def___hide_tooltip($, e){
-      $.le.tooltipsvc.hide(e)
+      $.le.tooltipsvc.hide(e, $.el)
       $.__tooltip_active = false
       $.__tooltip_target_evt = undefined
     },
@@ -67,12 +67,12 @@ ComponentsRegistry.define({ TooltipService: {
      * @param {string} txt 
      * @param {{position: string, delay: number, maxWidth: number}} options 
      */
-    show($, ev, txt, options){
+    show($, ev, owner, txt, options){
       // console.log("SHOW TOOLTIP FOR: ", ev, txt)
       if (txt){
         $.oos.running_timeout.set(
-          ev.target, 
-          setTimeout(() => { $.render.create(ev, txt, options) }, options.delay)
+          owner, 
+          setTimeout(() => { $.render.create(ev, owner, txt, options) }, options.delay)
         )
       }
     },
@@ -81,11 +81,11 @@ ComponentsRegistry.define({ TooltipService: {
      * @param {{oos: {running_timeout: Map<HTMLElement, number>}}} $ 
      * @param {MouseEvent & {target: HTMLElement}} ev 
      */
-    hide($, ev){
+    hide($, ev, owner){
       // console.log("HIDE TOOLTIP FOR: ", ev)
-      clearTimeout($.oos.running_timeout.get(ev.target))
-      $.oos.running_timeout.delete(ev.target)
-      $.render.destroy(ev)
+      clearTimeout($.oos.running_timeout.get(owner))
+      $.oos.running_timeout.delete(owner)
+      $.render.destroy(ev, owner)
     },
 
     // true html tooltip render
@@ -97,14 +97,14 @@ ComponentsRegistry.define({ TooltipService: {
        * @param {string} txt 
        * @param {{position: string, delay: number}} options 
        */
-      create($, ev, txt, options){
+      create($, ev, owner, txt, options){
         
         if (txt){
 
           let bounds = ev.target.getBoundingClientRect()
           // console.log("BOUNDS", bounds)
 
-          $.oos.running_tooltips.set( ev.target, 
+          $.oos.running_tooltips.set( owner, 
             $.u.newConnectedSubRenderer(document.body, { div: {
               
               let: {
@@ -153,11 +153,11 @@ ComponentsRegistry.define({ TooltipService: {
        * @param {{oos: {running_tooltips: Map<any, number>}}} $ 
        * @param {MouseEvent & {target: HTMLElement}} ev 
        */
-      destroy($, ev){
+      destroy($, ev, owner){
         setTimeout(() => {
-          let app = $.oos.running_tooltips.get(ev.target)
+          let app = $.oos.running_tooltips.get(owner)
           app?.destroy()
-          $.oos.running_tooltips.delete(ev.target)
+          $.oos.running_tooltips.delete(owner)
         }, 0);
       }
     },
