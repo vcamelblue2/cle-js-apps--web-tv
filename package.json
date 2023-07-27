@@ -23,7 +23,7 @@
         "deploy": "gh-pages -d ./dist/browser"
     },
     "dependencies": {
-        "cle.js": "~0.14.6",
+        "cle.js": "~0.14.9",
         "csz": "^1.2.0"
     },
     "devDependencies": {
