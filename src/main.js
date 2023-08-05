@@ -27,7 +27,7 @@ import "./utils/csz.js"
 
 import "./app/global-di-components/**/*.js"
 
-import { Testpage } from './app/pages/test.page.js'
+import { Homepage } from './app/pages/home.page.js'
 
 
 
@@ -36,7 +36,7 @@ LE_InitWebApp(async ()=>{
   await InitRouter({
 
     pages: {
-      "": Testpage
+      "": Homepage
 
       // "/": Homepage
 

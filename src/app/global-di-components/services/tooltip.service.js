@@ -1,5 +1,6 @@
 import { ComponentsRegistry } from "cle.js/lib";
 
+// old style - manual directive
 export const hasTooltip = (txt, {position="bottom", delay=300, maxWidth=200}={})=>{
   return {
     

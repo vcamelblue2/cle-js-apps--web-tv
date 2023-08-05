@@ -2,11 +2,11 @@ import {SmartAlias, cle} from 'cle.js/lib'
 import { hasTooltip } from '../global-di-components/directives/tooltip.directives'
 
 
-export const Testpage = async (state, params)=>{
+export const Homepage = async (state, params)=>{
 
   console.log(state, params)
 
-  return cle.div({ style: "min-height: 100vh"}, 
+  return cle.use_Page({ style: "min-height: 100vh"}, 
 
     { 'component-SettingsModel': { id: "settings" }},
     { 'component-ScreenService': { id: "screen" }},
@@ -16,7 +16,7 @@ export const Testpage = async (state, params)=>{
     { 'component-TooltipService': { id: "tooltipsvc" }},
     
 
-    cle.use_navbar({ class: css("background: #f4f5f6; border-bottom: 0.1rem solid #d1d1d1; padding: 5px 10px; position: sticky; top: 0px; z-index: 1;") }, 
+    cle.use_Navbar({ class: css("background: #f4f5f6; border-bottom: 0.1rem solid #d1d1d1; padding: 5px 10px; position: sticky; top: 0px; z-index: 1;") }, 
       
       cle.span({ class: $ => [
         css("margin: 0px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;"), 
@@ -73,12 +73,12 @@ export const Testpage = async (state, params)=>{
 
     }),
 
-    cle.use_contents({
+    cle.use_Contents({
       style: "padding: 25px; padding-top: 10px;",
       open_group: undefined, // utils for autoclose open group if max 1 group enabled
     },
 
-      cle.use_content({ meta: { forEach: "group", of: $ => $.le.chsearch.filtering ? $.le.chsearch.getFilteredChannels($.le.localdb.channels) : $.le.localdb.channels, full_optimized: true },
+      cle.use_Content({ meta: { forEach: "group", of: $ => $.le.chsearch.filtering ? $.le.chsearch.getFilteredChannels($.le.localdb.channels) : $.le.localdb.channels, full_optimized: true },
         open: false,
         forcedOpen: $ => $.open || $.le.chsearch.filtering,
         style: "padding: 20px; margin: 10px; border-radius: 5px; background: whitesmoke;",
@@ -96,7 +96,7 @@ export const Testpage = async (state, params)=>{
 
         cle.summary({ style: "cursor: pointer" }, $ => $.group.group, " (", $ => $.group.channels.length, ")"),
 
-        cle.use_channel_group({ style: {
+        cle.use_ChannelGroup({ style: {
             display: 'flex',
             overflow: 'auto',
             justifyContent: 'flex-start',
@@ -107,7 +107,7 @@ export const Testpage = async (state, params)=>{
           "ha_style.height": $ => $.forcedOpen ? null : '0px'
         }, 
 
-          cle.use_channel({ meta: { forEach: "channel", of: $ => $.group.channels },
+          cle.use_Channel({ meta: { forEach: "channel", of: $ => $.group.channels },
             style: "display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 15px; min-width: 200px",
             "ha_style.width": $ => $.channel.oversize ? '100%' : '33%'
           }, 
@@ -144,7 +144,7 @@ export const Testpage = async (state, params)=>{
       ),
     ),
 
-    cle.use_footer({ meta: {if: $ => $.le.extplayer.playng},
+    cle.use_Footer({ meta: {if: $ => $.le.extplayer.playng},
       style: "background: #cdcdcd; color: white; padding: 5px 10px; position: fixed; bottom: 0px; width: 100%"
     }, 
 
