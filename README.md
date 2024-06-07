@@ -1,4 +1,4 @@
-# Web Tv App - Clean.js Framework
+# Web Tv App - Cle.js Framework
 
 This project was generated with cle apps template 
 
